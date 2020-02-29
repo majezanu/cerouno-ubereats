@@ -16,13 +16,13 @@ class Restaurant
         );
     }
 
-    find(key, value) {
-        return this.restaurants.find(
+    static find(key, value, elements) {
+        return elements.find(
             restaurant => restaurant[key] === value
         );
     }
 
-    insert(restaurant) {
+    static insert(restaurant) {
         this.restaurants.push(restaurant);
     }
 }

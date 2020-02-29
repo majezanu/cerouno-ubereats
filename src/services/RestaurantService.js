@@ -1,9 +1,10 @@
 import RestaurantRepository from "../model/RestaurantRepository";
-
+import FoodMenuRepository from '../model/FoodMenuRepository';
 class RestaurantService
 {
     constructor() {
-        this.model = new Restaurant();
+        this.model = new RestaurantRepository();
+        this.foodModel = new FoodMenuRepository();
     }
     filter(filters) {
         let restaurants = this.model.restaurants;
@@ -17,6 +18,12 @@ class RestaurantService
             restaurants = RestaurantRepository.filter('zone', filters.zone, restaurants);
         }
         return restaurants;
+    }
+    getOne(id) {
+        let restaurant = RestaurantRepository.find('id', Number(id), this.model.restaurants);
+        let foods = FoodMenuRepository.filter('restaurand_id', Number(id), this.foodModel.foodMenu);
+        restaurant.foods = foods;
+        return restaurant;
     }
 }
 

@@ -9,6 +9,11 @@ class RestaurantController
         let restaurants = this.service.filter(req.query);
         res.send(restaurants);
     }
+
+    getOne(req, res, next) {
+        let restaurant = this.service.getOne(req.params.id);
+        res.send(restaurant);
+    }
 }
 
 export default RestaurantController;
