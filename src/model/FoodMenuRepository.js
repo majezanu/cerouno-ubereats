@@ -16,14 +16,15 @@ class FoodMenuRepository
         );
     }
 
-    find(key, value, elements) {
+    static find(key, value, elements) {
         return elements.find(
             restaurant => restaurant[key] === value
         );
     }
 
-    insert(food, foodMenu) {
+    static insert(food, foodMenu) {
         foodMenu.push(food);
+        return foodMenu;
     }
 }
 
