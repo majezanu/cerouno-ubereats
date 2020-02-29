@@ -1,9 +1,9 @@
-import restaurants from "./data/restaurants";
+import foodMenu from "./data/foodmenu";
 
-class Restaurant
+class FoodMenuRepository
 {
     constructor() {
-        this.restaurants = restaurants;
+        this.foodMenu = foodMenu;
     }
 
     static filter(key, value, elements) {
@@ -16,15 +16,15 @@ class Restaurant
         );
     }
 
-    static find(key, value, elements) {
+    find(key, value, elements) {
         return elements.find(
             restaurant => restaurant[key] === value
         );
     }
 
-    static insert(restaurant) {
-        this.restaurants.push(restaurant);
+    insert(food, foodMenu) {
+        foodMenu.push(food);
     }
 }
 
-export default Restaurant;
+export default FoodMenuRepository;
