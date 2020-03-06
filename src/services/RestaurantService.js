@@ -10,7 +10,7 @@ class RestaurantService
     filter(filters) {
         let restaurants = this.model.restaurants;
         if(filters.id) {
-            restaurants = RestaurantRepository.filter('id', Number(filters.id), restaurants);
+            restaurants = RestaurantRepository.filter('id', filters.id, restaurants);
         }
         if(filters.name) {
             restaurants = RestaurantRepository.filter('name', filters.name, restaurants);
@@ -21,7 +21,7 @@ class RestaurantService
         return restaurants;
     }
     getOne(id) {
-        let restaurant = RestaurantRepository.find('id', Number(id), this.model.restaurants);
+        let restaurant = RestaurantRepository.find('id', id, this.model.restaurants);
         if(!restaurant) {
             return null;
         }
