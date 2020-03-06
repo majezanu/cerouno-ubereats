@@ -12,6 +12,12 @@ class RestaurantController
 
     getOne(req, res, next) {
         let restaurant = this.service.getOne(req.params.id);
+        if(!restaurant) {
+            res.status(404);
+            res.send({
+                error: 'No se encontró el restaurante'
+            });
+        }
         res.send(restaurant);
     }
 }

@@ -21,6 +21,22 @@ class FoodMenuService
         }
         return foods;
     }
+    getOne(id) {
+        let food = FoodMenuRepository.find('id', Number(id), this.model.foodMenu);
+        if(!food) {
+            return null;
+        }
+        return food;
+    }
+    insertFoodOnArray(food, items) {
+        return FoodMenuRepository.insert(food, items);
+    }
+    quitFoodFromArray(foodId, items) {
+        items = items.filter(
+            item => item.id !== foodId
+        );
+        return items;
+    }
 }
 
 export default FoodMenuService;
