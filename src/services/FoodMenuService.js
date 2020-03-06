@@ -16,7 +16,7 @@ class FoodMenuService
         }
         if(filters.restaurand_id) {
             foods = FoodMenuRepository.filter('restaurand_id', 
-                                                Number(filters.restaurand_id), 
+                                                filters.restaurand_id, 
                                                 foods);
         }
         return foods;

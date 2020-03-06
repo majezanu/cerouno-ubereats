@@ -9,7 +9,7 @@ class RestaurantService
     filter(filters) {
         let restaurants = this.model.restaurants;
         if(filters.id) {
-            restaurants = RestaurantRepository.filter('id', Number(filters.id), restaurants);
+            restaurants = RestaurantRepository.filter('id', filters.id, restaurants);
         }
         if(filters.name) {
             restaurants = RestaurantRepository.filter('name', filters.name, restaurants);
@@ -20,8 +20,8 @@ class RestaurantService
         return restaurants;
     }
     getOne(id) {
-        let restaurant = RestaurantRepository.find('id', Number(id), this.model.restaurants);
-        let foods = FoodMenuRepository.filter('restaurand_id', Number(id), this.foodModel.foodMenu);
+        let restaurant = RestaurantRepository.find('id', id, this.model.restaurants);
+        let foods = FoodMenuRepository.filter('restaurand_id', id, this.foodModel.foodMenu);
         restaurant.foods = foods;
         return restaurant;
     }
