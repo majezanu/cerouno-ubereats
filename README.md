@@ -11,6 +11,10 @@ Para correr el proyecto es necesario correr los siguientes comandos:
 npm install
 npm run dev
 
+# Debug project
+Para depurar el proyecto, es necesario correr el siguiente comando:
+npm run dev:debug
+
 # Testing
 Por el momento, las únicas pruebas que se pueden hacer son de forma manual, para ello se puede utilizar 
 Postman con la siguiente colección:
