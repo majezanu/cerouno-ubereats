@@ -25,7 +25,7 @@ class RestaurantService
         if(!restaurant) {
             return null;
         }
-        let foods = this.foodService.filter('restaurant_id', restaurant.id);
+        let foods = this.foodService.filter({'restaurant_id':restaurant.id});
         restaurant.foods = foods;
         return restaurant;
     }
