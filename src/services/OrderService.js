@@ -1,44 +1,95 @@
 import FoodMenuService from "./FoodMenuService";
 import RestaurantService from "./RestaurantService";
+import { v4 as uuidv4 } from 'uuid';
 
 class OrderService
 {
     constructor() {
         this.restaurantService = new RestaurantService();
         this.foodService = new FoodMenuService();
-        this.currentOrder = [];
+        this.foodSelected = [];
+        this.currentOrder = {};
         this.orders = [];
+        this.restaurantsOrders = [];
+        this.deliveryOrders = [];
     }
     selectFood(foodId) {
         let food = this.foodService.getOne(foodId);
         if(food == null) {
             return null;
         }
-        return this.foodService.insertFoodOnArray(food, this.currentOrder);
+        this.foodSelected.push(food);
+        return this.foodSelected;
     }
     deselectFood(foodId) {
-        this.currentOrder = this.foodService.quitFoodFromArray(foodId, this.currentOrder);
-        return this.currentOrder;
+        let foodSelected = this.foodService.quitFoodFromArray(foodId, this.foodSelected);
+        this.foodSelected = foodSelected;
+        return this.foodSelected;
     }
     getCurrent() {
-        return this.currentOrder;
+        return this.foodSelected;
     }
     acceptCurrentOrder() {
+        this.currentOrder = {
+            id: uuidv4(),
+            foods: this.foodSelected
+        }
+        this.foodSelected = [];
         this.orders.push(this.currentOrder);
-        return this.orders;
+        return this.currentOrder;
     }
     cancelCurrentOrder() {
         this.currentOrder = [];
         return this.currentOrder;
     }
     checkout() {
-        let total = this.currentOrder.reduce((accumulator, currentFood) => currentFood.price + accumulator,0);
+        let total = this.currentOrder.foods.reduce((accumulator, currentFood) => currentFood.price + accumulator,0);
         let order = this.currentOrder;
         return {
             order,
             total,
             message: "Gracias por usar Uber Eats"
         };
+    }
+    getByRestaurant(restaurantId) {
+        let restaurantsOrders = this.orders.map(order => {
+            return {
+                id: order.id,
+                restaurantId,
+                foods: order.foods.filter(food => food.restaurant_id === restaurantId)
+            }
+        }).filter(order => order.foods.length > 0);
+        
+        return restaurantsOrders;
+    }
+    restaurantAcceptOrder(restaurantId, orderId) {
+        let order = this.orders.map(order => {
+            return {
+                id: order.id,
+                restaurantId,
+                foods: order.foods.filter(food => food.restaurant_id === restaurantId),
+                total: order.foods.reduce((accumulator, currentFood) => currentFood.price + accumulator,0)
+            }
+        }).find(order => order.id === orderId && order.foods.length > 0);
+        if(!order) {
+            return null;
+        }
+        this.restaurantsOrders.push(order);
+        return order;
+    }
+    restaurantFinishOrder(restaurantId, orderId) {
+        let order = this.restaurantsOrders.find(order => order.id === orderId && order.restaurantId === restaurantId);
+        this.deliveryOrders.push(order);
+        return order;
+    }
+    getTotalByRestaurant(restaurantId) {
+        let total = this.restaurantsOrders.filter(order => order.restaurantId === restaurantId).reduce(
+            (accumulator, currentOrder) => currentOrder.total + accumulator,0);
+        let response = {
+            total_uber: total*0.3,
+            total_restaurant: total*0.7
+        };
+        return response;
     }
 }
 

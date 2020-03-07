@@ -26,6 +26,9 @@ class FoodMenuRepository
         foodMenu.push(food);
         return foodMenu;
     }
+    static deleteById(id, foodMenu) {
+        return foodMenu.filter(food => food.id !== id);
+    }
 }
 
 export default FoodMenuRepository;

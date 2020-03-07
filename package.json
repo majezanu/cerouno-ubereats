@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node index.js",
+    "dev:debug": "nodemon --inspect=0.0.0.0:9229 --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,7 +30,8 @@
     "core-js": "^3.6.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "^3.1.0"
+    "express-handlebars": "^3.1.0",
+    "uuid": "^7.0.2"
   },
   "devDependencies": {
     "@babel/node": "^7.8.4",
