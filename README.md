@@ -22,12 +22,21 @@ Postman con la siguiente colección:
 En la carpeta "Uber Eats Simulator"
 
 # API
-1. Obtener restaurantes, para ello se utiliza la siguiente url:
-(/api/restaurants?zone=centro&id=1&name=Hot wings)
-2. Obtener un restaurante por id, devuelve el restaurante y sus platillos
-(/api/restaurants/1)
-3. Obtener lista de platillos, se puede filtrar por restaurante, nombre o id:
-(/api/foods?restaurand_id=1)
+* Restaurantes
+    1. Obtener restaurantes, para ello se utiliza la siguiente url:
+    (/api/restaurants?zone=centro&id=1&name=Hot wings)
+    2. Obtener un restaurante por id, devuelve el restaurante y sus platillos
+    (/api/restaurants/1)
+    * Platillos del restaurante
+        3. Crear platillos
+        (/api/restaurants/:id/foods)
+        4. Editar platillo
+        (/api/restaurants/:id/foods/:foodId)
+        5. Eliminar platillo
+        (/api/restaurants/:id/foods/:foodId)
+* Platillos
+    1. Obtener lista de platillos, se puede filtrar por restaurante, nombre o id:
+    (/api/foods?restaurand_id=1)
 4. Seleccionar platillo para agregar a la orden:
 (/api/orders/:id/select-food)
 5. Deseleccionar platillo de la orden:
