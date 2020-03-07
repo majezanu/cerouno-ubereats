@@ -10,6 +10,11 @@ OrderRouter.get('/current', (req, res) => controller.watchCurrentOrder(req, res)
 OrderRouter.get('/accept', (req, res) => controller.accept(req, res));
 OrderRouter.get('/cancel', (req, res) => controller.cancel(req, res));
 OrderRouter.get('/checkout', (req, res) => controller.checkout(req, res));
-// RestaurantRouter.get('/:id', (req,res) => controller.getOne(req,res));
+
+OrderRouter.get('/:restaurantId/restaurant-orders', (req, res) => controller.getByRestaurant(req, res));
+OrderRouter.get('/:restaurantId/restaurant-orders/total', (req, res) => controller.getTotal(req, res));
+OrderRouter.get('/:restaurantId/restaurant-orders/:id/accept', (req, res) => controller.acceptOrderByRestaurant(req, res));
+OrderRouter.get('/:restaurantId/restaurant-orders/:id/finish', (req, res) => controller.finsishOrderByRestaurant(req, res));
+
 
 export default OrderRouter;

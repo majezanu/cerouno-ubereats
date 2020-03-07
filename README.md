@@ -34,6 +34,13 @@ En la carpeta "Uber Eats Simulator"
     (/api/restaurants/:id/foods/:foodId)
     5. Eliminar platillo
     (/api/restaurants/:id/foods/:foodId)
+    * Ordenes
+    6. Ver ordenes del restaurante:
+    (/api/orders/:restaurantId/restaurant-orders)
+    7. Aceptar orden del restaurante:
+    (/api/orders/:restaurantId/restaurant-orders/:id/accept)
+    8. Ver total vendido:
+    (/api/orders/:restaurantId/restaurant-orders/total)
 * Platillos
     1. Obtener lista de platillos, se puede filtrar por restaurante, nombre o id:
     (/api/foods?restaurand_id=1)
