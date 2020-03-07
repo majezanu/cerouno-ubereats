@@ -16,5 +16,9 @@ OrderRouter.get('/:restaurantId/restaurant-orders/total', (req, res) => controll
 OrderRouter.get('/:restaurantId/restaurant-orders/:id/accept', (req, res) => controller.acceptOrderByRestaurant(req, res));
 OrderRouter.get('/:restaurantId/restaurant-orders/:id/finish', (req, res) => controller.finsishOrderByRestaurant(req, res));
 
+OrderRouter.get('/delivery-orders', (req, res) => controller.getToDelivery(req, res));
+OrderRouter.get('/:id/delivery-orders', (req, res) => controller.getCurrentDeliveryOrder(req, res));
+OrderRouter.get('/:id/delivery-orders/accept', (req, res) => controller.deliveryAcceptOrder(req, res));
+OrderRouter.get('/delivery-orders/total', (req, res) => controller.getTotalDelivery(req, res));
 
 export default OrderRouter;

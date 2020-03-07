@@ -44,18 +44,28 @@ En la carpeta "Uber Eats Simulator"
 * Platillos
     1. Obtener lista de platillos, se puede filtrar por restaurante, nombre o id:
     (/api/foods?restaurand_id=1)
-4. Seleccionar platillo para agregar a la orden:
-(/api/orders/:id/select-food)
-5. Deseleccionar platillo de la orden:
-(/api/orders/:id/deselect-food)
-6. Ver todos los platillos de la orden actual:
-(/api/orders/current)
-7. Hacer un checkout de la orden para ver el total:
-(/api/orders/checkout)
-8. Aceptar la orden, devuelve un lista de todas las ordenes que has aceptado:
-(/api/orders/accept)
-9. Cancelar orden, limpia la orden que habías hecho:
-(/api/orders/cancel)
+* Ordenes
+    1. Seleccionar platillo para agregar a la orden:
+    (/api/orders/:id/select-food)
+    2. Deseleccionar platillo de la orden:
+    (/api/orders/:id/deselect-food)
+    3. Ver todos los platillos de la orden actual:
+    (/api/orders/current)
+    4. Hacer un checkout de la orden para ver el total:
+    (/api/orders/checkout)
+    5. Aceptar la orden, devuelve un lista de todas las ordenes que has aceptado:
+    (/api/orders/accept)
+    6. Cancelar orden, limpia la orden que habías hecho:
+    (/api/orders/cancel)
+* Entregas
+    1. Ver ordenes pendientes
+    (/api/orders/delivery-orders)
+    2. Aceptar orden:
+    (/api/orders/:id/delivery-orders/accept)
+    3. Ver orden actual:
+    (/api/orders/:id/delivery-orders)
+    4. Ver total vendido (Corresponde al 10% de la orden, de esto 70% es del delivery):
+    (/api/orders/delivery-orders/total)
 
 # Framework
 El proyecto está construido utilizando diferentes capas para separar la lógica, entra estas

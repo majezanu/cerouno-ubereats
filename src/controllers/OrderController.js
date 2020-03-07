@@ -51,6 +51,22 @@ class OrderController
         let total = this.service.getTotalByRestaurant(req.params.restaurantId);
         res.send(total);
     }
+    getToDelivery(req, res, next) {
+        let orders = this.service.getToDelivery();
+        res.send(orders);
+    }
+    getCurrentDeliveryOrder(req, res, next) {
+        let order = this.service.getCurrentDeliveryOrder(req.params.id);
+        res.send(order);
+    }
+    deliveryAcceptOrder(req, res, next) {
+        let order = this.service.deliveryAcceptOrder(req.params.id);
+        res.send(order);
+    }
+    getTotalDelivery(req, res, next) {
+        let total = this.service.getTotalDelivery();
+        res.send(total);
+    }
 }
 
 export default OrderController;
