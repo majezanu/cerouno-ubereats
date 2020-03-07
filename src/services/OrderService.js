@@ -12,6 +12,7 @@ class OrderService
         this.orders = [];
         this.restaurantsOrders = [];
         this.deliveryOrders = [];
+        this.deliveryOrdersAccepted = [];
     }
     selectFood(foodId) {
         let food = this.foodService.getOne(foodId);
@@ -88,6 +89,27 @@ class OrderService
         let response = {
             total_uber: total*0.3,
             total_restaurant: total*0.7
+        };
+        return response;
+    }
+
+    getToDelivery() {
+        return this.deliveryOrders;
+    }
+    getCurrentDeliveryOrder(id) {
+        let order = this.deliveryOrders.find(order => order.id === id);
+        return order;
+    }
+    deliveryAcceptOrder(id) {
+        let order = this.getCurrentDeliveryOrder(id);
+        this.deliveryOrdersAccepted.push(order);
+        return order;
+    }
+    getTotalDelivery() {
+        let total = this.deliveryOrdersAccepted.reduce((accumulator, currentOrder) => currentOrder.total + accumulator,0)*0.1;
+        let response = {
+            total_uber: total*0.3,
+            tota_delivery: total*0.7
         };
         return response;
     }
