@@ -1,5 +1,6 @@
 import RestaurantRepository from "../model/RestaurantRepository";
 import FoodMenuRepository from "../model/FoodMenuRepository";
+import { v4 as uuidv4 } from 'uuid';
 
 class FoodMenuService
 {
@@ -9,7 +10,7 @@ class FoodMenuService
     filter(filters) {
         let foods = this.model.foodMenu;
         if(filters.id) {
-            foods = FoodMenuRepository.filter('id', Number(filters.id), foods);
+            foods = FoodMenuRepository.filter('id', filters.id, foods);
         }
         if(filters.name) {
             foods = FoodMenuRepository.filter('name', filters.name, foods);
@@ -22,14 +23,23 @@ class FoodMenuService
         return foods;
     }
     getOne(id) {
-        let food = FoodMenuRepository.find('id', Number(id), this.model.foodMenu);
+        let food = FoodMenuRepository.find('id', id, this.model.foodMenu);
         if(!food) {
             return null;
         }
         return food;
     }
     insertFoodOnArray(food, items) {
+        food.id = uuidv4();
         return FoodMenuRepository.insert(food, items);
+    }
+    editFood(id, data) {
+        let food = this.getOne(id);
+        Object.assign(food, data);
+        return food;
+    }
+    deleteFood(foodId) {
+        this.model.foodMenu = FoodMenuRepository.deleteById(foodId, this.model.foodMenu);
     }
     quitFoodFromArray(foodId, items) {
         items = items.filter(

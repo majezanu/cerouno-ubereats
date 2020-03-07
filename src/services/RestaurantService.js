@@ -29,6 +29,26 @@ class RestaurantService
         restaurant.foods = foods;
         return restaurant;
     }
+    createFoods(id, food) {
+        food.restaurant_id = id;
+        this.foodService.insertFoodOnArray(food,this.foodService.filter({}));
+        return food;
+    }
+    editFood(restaurantId, foodId, data) {
+        let food = this.foodService.filter({'restaurant_id':restaurantId, 'id': foodId})[0];
+        if(!food) {
+            return null;
+        }
+        return this.foodService.editFood(food.id, data);
+    }
+    deleteFood(restaurantId, foodId) {
+        let food = this.foodService.filter({'restaurant_id':restaurantId, 'id': foodId})[0];
+        if(!food) {
+            return false;
+        }
+        this.foodService.deleteFood(food.id);
+        return true;
+    }
 }
 
 export default RestaurantService;
