@@ -28,12 +28,12 @@ En la carpeta "Uber Eats Simulator"
     2. Obtener un restaurante por id, devuelve el restaurante y sus platillos
     (/api/restaurants/1)
     * Platillos del restaurante
-        3. Crear platillos
-        (/api/restaurants/:id/foods)
-        4. Editar platillo
-        (/api/restaurants/:id/foods/:foodId)
-        5. Eliminar platillo
-        (/api/restaurants/:id/foods/:foodId)
+    3. Crear platillos
+    (/api/restaurants/:id/foods)
+    4. Editar platillo
+    (/api/restaurants/:id/foods/:foodId)
+    5. Eliminar platillo
+    (/api/restaurants/:id/foods/:foodId)
 * Platillos
     1. Obtener lista de platillos, se puede filtrar por restaurante, nombre o id:
     (/api/foods?restaurand_id=1)
